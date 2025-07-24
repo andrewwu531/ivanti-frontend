@@ -11,14 +11,14 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   onCreate,
 }) => {
   return (
-    <div className="px-6 py-4 border-b border-gray-200">
+    <div className="px-8 py-5 border-b border-gray-200">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold text-gray-900">
-          Temperature Records ({recordCount})
+          Temperature Dashboard
         </h2>
         <Button onClick={onCreate} variant="primary">
           <svg
-            className="mr-2 w-4 h-4"
+            className="mt-0.5 mr-1 w-4 h-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -26,7 +26,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
+              strokeWidth={2.5}
               d="M12 6v6m0 0v6m0-6h6m-6 0H6"
             />
           </svg>

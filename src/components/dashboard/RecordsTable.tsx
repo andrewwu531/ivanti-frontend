@@ -13,26 +13,31 @@ const RecordsTable: React.FC<RecordsTableProps> = ({ records, onView }) => {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-              Person Name
+            <th className="px-10 py-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase rounded-tl-lg">
+              Employee Name
             </th>
-            <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+            <th className="px-6 py-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
               Temperature Count
             </th>
-            <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+            <th className="px-6 py-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
               Closest to Zero
             </th>
-            <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+            <th className="px-6 py-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
               Last Updated
             </th>
-            <th className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+            <th className="px-6 py-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase rounded-tr-lg">
               Actions
             </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {records.map((record) => (
-            <RecordRow key={record.id} record={record} onView={onView} />
+          {records.map((record, index) => (
+            <RecordRow
+              key={record.id}
+              record={record}
+              onView={onView}
+              isLast={index === records.length - 1} // Pass isLast prop
+            />
           ))}
         </tbody>
       </table>

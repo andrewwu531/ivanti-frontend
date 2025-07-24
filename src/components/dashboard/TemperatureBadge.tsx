@@ -13,7 +13,7 @@ const TemperatureBadge: React.FC<TemperatureBadgeProps> = ({ temperature }) => {
 
   return (
     <span
-      className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getBadgeColor(temperature)}`}
+      className={`inline-flex px-3 py-2 text-xs font-semibold rounded-full ${getBadgeColor(temperature)}`}
     >
       {temperature}°C
     </span>

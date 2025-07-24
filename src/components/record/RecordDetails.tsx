@@ -11,7 +11,7 @@ const RecordDetails: React.FC<RecordDetailsProps> = ({ record }) => {
   };
 
   return (
-    <div className="p-6 w-[30%] border-r border-gray-200">
+    <div className="px-12 py-12 w-[30%] border-r border-gray-200">
       <h2 className="mb-6 text-xl font-semibold text-gray-900">
         Record Details
       </h2>
@@ -44,7 +44,7 @@ const RecordDetails: React.FC<RecordDetailsProps> = ({ record }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4 mt-6">
           <div>
             <label className="block mb-1 text-sm font-medium text-gray-700">
               Recorded At

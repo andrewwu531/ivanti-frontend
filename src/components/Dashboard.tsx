@@ -16,7 +16,7 @@ const Dashboard: React.FC<DashboardProps> = ({ records, onView, onCreate }) => {
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-lg">
+    <div className="bg-white rounded-xl border border-gray-200 shadow-lg">
       <DashboardHeader recordCount={records.length} onCreate={onCreate} />
       <RecordsTable records={records} onView={onView} />
     </div>

@@ -42,7 +42,7 @@ const MainContent: React.FC<MainContentProps> = ({
   onEditClick,
   onDelete,
   onBack,
-  onCreateClick, // Add this
+  onCreateClick,
 }) => {
   return (
     <main className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
