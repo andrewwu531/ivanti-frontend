@@ -101,6 +101,11 @@ function App() {
     setEditRecord(null);
   };
 
+  // Create new record (opens create form)
+  const handleCreateClick = () => {
+    setViewMode("create");
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -117,6 +122,7 @@ function App() {
         onEditClick={handleEditClick}
         onDelete={handleDelete}
         onBack={handleBack}
+        onCreateClick={handleCreateClick} // Add this
       />
     </div>
   );

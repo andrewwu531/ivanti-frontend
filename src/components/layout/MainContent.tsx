@@ -26,6 +26,7 @@ interface MainContentProps {
   onEditClick: (record: TemperatureRecord) => void;
   onDelete: (id: number) => Promise<void>;
   onBack: () => void;
+  onCreateClick: () => void;
 }
 
 const MainContent: React.FC<MainContentProps> = ({
@@ -41,6 +42,7 @@ const MainContent: React.FC<MainContentProps> = ({
   onEditClick,
   onDelete,
   onBack,
+  onCreateClick, // Add this
 }) => {
   return (
     <main className="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -97,7 +99,7 @@ const MainContent: React.FC<MainContentProps> = ({
           <Dashboard
             records={records}
             onView={onView}
-            onCreate={() => onBack()}
+            onCreate={onCreateClick} // Fix: Use onCreateClick instead of onBack
           />
         )}
 
