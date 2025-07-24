@@ -19,7 +19,7 @@ const RecordDetails: React.FC<RecordDetailsProps> = ({ record }) => {
       <div className="space-y-6">
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-700">
-            Person Name
+            Employee Name
           </label>
           <div className="text-lg font-medium text-gray-900">
             {record.personName}

@@ -109,8 +109,8 @@ const RecordChart: React.FC<RecordChartProps> = ({
   };
 
   return (
-    <div className="px-10 pt-12 bg-white rounded-lg pb-18">
-      <h2 className="mb-6 text-2xl font-semibold text-center text-gray-800">
+    <div className="px-10 bg-white rounded-lg pt-18 pb-18">
+      <h2 className="mb-12 text-2xl font-semibold text-center text-gray-800">
         Temperature Chart
       </h2>
 

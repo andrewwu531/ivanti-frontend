@@ -46,9 +46,6 @@ const RecordDetail: React.FC<RecordDetailProps> = ({
           <RecordDetails record={record} />
           {/* Chart Section - 70% */}
           <div className="p-6 w-[70%]">
-            <h3 className="mb-6 text-xl font-semibold text-gray-900">
-              Temperature Analysis
-            </h3>
             <div className="h-full">
               <RecordChart
                 temperatures={record.temperatureSeries}
