@@ -1,6 +1,8 @@
 import React from "react";
 import type { TemperatureRecord } from "../utils/temperatureApi";
-import TemperatureChart from "./TemperatureChart";
+import RecordChart from "./record/RecordChart";
+import RecordHeader from "./record/RecordHeader";
+import RecordDetails from "./record/RecordDetails";
 
 interface RecordDetailProps {
   record: TemperatureRecord;
@@ -15,149 +17,23 @@ const RecordDetail: React.FC<RecordDetailProps> = ({
   onDelete,
   onBack,
 }) => {
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString();
-  };
-
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-lg">
-      <div className="px-6 py-4 border-b border-gray-200">
-        <div className="flex justify-between items-center">
-          <button
-            onClick={onBack}
-            className="inline-flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900"
-          >
-            <svg
-              className="mr-2 w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Back to Dashboard
-          </button>
-          <div className="flex space-x-3">
-            <button
-              onClick={() => onEdit(record)}
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 transition-colors duration-200 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              <svg
-                className="mr-2 w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                />
-              </svg>
-              Edit
-            </button>
-            <button
-              onClick={() => onDelete(record.id)}
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md border border-transparent transition-colors duration-200 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-              <svg
-                className="mr-2 w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                />
-              </svg>
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <RecordHeader
+        record={record}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        onBack={onBack}
+      />
       <div className="flex">
-        {/* Details Section - 30% */}
-        <div className="p-6 w-[30%] border-r border-gray-200">
-          <h2 className="mb-6 text-xl font-semibold text-gray-900">
-            Record Details
-          </h2>
-
-          <div className="space-y-6">
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                Person Name
-              </label>
-              <div className="text-lg font-medium text-gray-900">
-                {record.personName}
-              </div>
-            </div>
-
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                Temperature Series
-              </label>
-              <div className="overflow-y-auto p-3 max-h-32 text-sm text-gray-900 bg-gray-50 rounded-md">
-                {record.temperatureSeries.join(", ")}
-              </div>
-            </div>
-
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-700">
-                Closest to Zero
-              </label>
-              <div className="text-lg font-semibold text-blue-600">
-                {record.closestToZero}°C
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4">
-              <div>
-                <label className="block mb-1 text-sm font-medium text-gray-700">
-                  Recorded At
-                </label>
-                <div className="text-sm text-gray-900">
-                  {formatDate(record.recordedAt)}
-                </div>
-              </div>
-
-              <div>
-                <label className="block mb-1 text-sm font-medium text-gray-700">
-                  Created At
-                </label>
-                <div className="text-sm text-gray-900">
-                  {formatDate(record.createdAt)}
-                </div>
-              </div>
-
-              <div>
-                <label className="block mb-1 text-sm font-medium text-gray-700">
-                  Last Updated
-                </label>
-                <div className="text-sm text-gray-900">
-                  {formatDate(record.updatedAt)}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <RecordDetails record={record} />
         {/* Chart Section - 70% */}
         <div className="p-6 w-[70%]">
           <h3 className="mb-6 text-xl font-semibold text-gray-900">
             Temperature Analysis
           </h3>
           <div className="h-full">
-            <TemperatureChart
+            <RecordChart
               temperatures={record.temperatureSeries}
               closestToZero={record.closestToZero}
             />

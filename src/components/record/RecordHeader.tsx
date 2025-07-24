@@ -1,21 +1,26 @@
 import React from "react";
-import Button from "../ui/Button";
+import type { TemperatureRecord } from "../../utils/temperatureApi";
 
 interface RecordHeaderProps {
+  record: TemperatureRecord;
+  onEdit: (record: TemperatureRecord) => void;
+  onDelete: (id: number) => void;
   onBack: () => void;
-  onEdit: () => void;
-  onDelete: () => void;
 }
 
 const RecordHeader: React.FC<RecordHeaderProps> = ({
-  onBack,
+  record,
   onEdit,
   onDelete,
+  onBack,
 }) => {
   return (
     <div className="px-6 py-4 border-b border-gray-200">
       <div className="flex justify-between items-center">
-        <Button onClick={onBack} variant="secondary">
+        <button
+          onClick={onBack}
+          className="inline-flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900"
+        >
           <svg
             className="mr-2 w-5 h-5"
             fill="none"
@@ -30,9 +35,12 @@ const RecordHeader: React.FC<RecordHeaderProps> = ({
             />
           </svg>
           Back to Dashboard
-        </Button>
+        </button>
         <div className="flex space-x-3">
-          <Button onClick={onEdit} variant="secondary">
+          <button
+            onClick={() => onEdit(record)}
+            className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 transition-colors duration-200 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
             <svg
               className="mr-2 w-4 h-4"
               fill="none"
@@ -47,8 +55,11 @@ const RecordHeader: React.FC<RecordHeaderProps> = ({
               />
             </svg>
             Edit
-          </Button>
-          <Button onClick={onDelete} variant="danger">
+          </button>
+          <button
+            onClick={() => onDelete(record.id)}
+            className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md border border-transparent transition-colors duration-200 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          >
             <svg
               className="mr-2 w-4 h-4"
               fill="none"
@@ -63,7 +74,7 @@ const RecordHeader: React.FC<RecordHeaderProps> = ({
               />
             </svg>
             Delete
-          </Button>
+          </button>
         </div>
       </div>
     </div>

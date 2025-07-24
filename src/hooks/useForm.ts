@@ -1,6 +1,10 @@
 import { useState, useCallback } from "react";
-import type { FormState, ValidationError } from "../types/common";
-import { validateForm } from "../utils/validators";
+import type { FormState } from "../types/common";
+import {
+  validateForm,
+  validatePersonName,
+  validateTemperatureSeries,
+} from "../utils/validators";
 
 export const useForm = (initialData?: {
   personName: string;
@@ -18,11 +22,15 @@ export const useForm = (initialData?: {
       field: keyof Omit<FormState, "errors" | "isSubmitting">,
       value: string
     ) => {
-      setFormState((prev) => ({
-        ...prev,
-        [field]: value,
-        errors: { ...prev.errors, [field]: undefined },
-      }));
+      setFormState((prev) => {
+        const newErrors = { ...prev.errors };
+        delete newErrors[field];
+        return {
+          ...prev,
+          [field]: value,
+          errors: newErrors,
+        };
+      });
     },
     []
   );
@@ -38,15 +46,18 @@ export const useForm = (initialData?: {
       return;
     }
 
-    setFormState((prev) => ({
-      ...prev,
-      errors: {
-        ...prev.errors,
-        [field]: validationResult.isValid
-          ? undefined
-          : validationResult.message,
-      },
-    }));
+    setFormState((prev) => {
+      const newErrors = { ...prev.errors };
+      if (validationResult.isValid) {
+        delete newErrors[field];
+      } else {
+        newErrors[field] = validationResult.message || "Invalid input";
+      }
+      return {
+        ...prev,
+        errors: newErrors,
+      };
+    });
   }, []);
 
   const validateAll = useCallback(() => {
@@ -58,7 +69,7 @@ export const useForm = (initialData?: {
     if (!validationResult.isValid) {
       setFormState((prev) => ({
         ...prev,
-        errors: { general: validationResult.message },
+        errors: { general: validationResult.message || "Validation failed" },
       }));
       return false;
     }

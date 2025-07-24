@@ -146,15 +146,13 @@ class TemperatureApiService {
     const queryString = searchParams.toString();
     const endpoint = `/temperature-records${queryString ? `?${queryString}` : ""}`;
 
-    const response = await this.request<{ data: TemperatureRecord[] }>(
-      endpoint
-    );
+    const response = await this.request<TemperatureRecord[]>(endpoint);
     return response.data;
   }
 
   // Get single temperature record
   async getTemperatureRecord(id: number): Promise<TemperatureRecord> {
-    const response = await this.request<{ data: TemperatureRecord }>(
+    const response = await this.request<TemperatureRecord>(
       `/temperature-records/${id}`
     );
     return response.data;
@@ -164,7 +162,7 @@ class TemperatureApiService {
   async createTemperatureRecord(
     data: CreateTemperatureRequest
   ): Promise<TemperatureRecord> {
-    const response = await this.request<{ data: TemperatureRecord }>(
+    const response = await this.request<TemperatureRecord>(
       "/temperature-records",
       {
         method: "POST",
@@ -179,7 +177,7 @@ class TemperatureApiService {
     id: number,
     data: UpdateTemperatureRequest
   ): Promise<TemperatureRecord> {
-    const response = await this.request<{ data: TemperatureRecord }>(
+    const response = await this.request<TemperatureRecord>(
       `/temperature-records/${id}`,
       {
         method: "PUT",
@@ -198,7 +196,7 @@ class TemperatureApiService {
 
   // Get temperature statistics
   async getStats(): Promise<TemperatureStats> {
-    const response = await this.request<{ data: TemperatureStats }>(
+    const response = await this.request<TemperatureStats>(
       "/temperature-records/stats/summary"
     );
     return response.data;

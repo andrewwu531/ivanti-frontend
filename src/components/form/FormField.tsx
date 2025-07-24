@@ -1,65 +1,63 @@
 import React from "react";
 
 interface FormFieldProps {
+  id: string;
   label: string;
-  name: string;
+  type: "text" | "textarea";
   value: string;
   onChange: (value: string) => void;
-  onBlur?: () => void;
-  error?: string;
   placeholder?: string;
-  type?: "text" | "textarea";
+  disabled?: boolean;
   required?: boolean;
+  rows?: number;
+  helpText?: string;
 }
 
 const FormField: React.FC<FormFieldProps> = ({
+  id,
   label,
-  name,
+  type,
   value,
   onChange,
-  onBlur,
-  error,
   placeholder,
-  type = "text",
+  disabled = false,
   required = false,
+  rows = 4,
+  helpText,
 }) => {
-  const inputClasses = `block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 ${
-    error ? "border-red-300" : "border-gray-300"
-  }`;
+  const baseClasses =
+    "px-3 py-2 w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500";
 
   return (
     <div>
       <label
-        htmlFor={name}
-        className="block mb-1 text-sm font-medium text-gray-700"
+        htmlFor={id}
+        className="block mb-2 text-sm font-medium text-gray-700"
       >
-        {label}
-        {required && <span className="ml-1 text-red-500">*</span>}
+        {label} {required && "*"}
       </label>
-      {type === "textarea" ? (
-        <textarea
-          id={name}
-          name={name}
+      {type === "text" ? (
+        <input
+          id={id}
+          type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          onBlur={onBlur}
           placeholder={placeholder}
-          rows={4}
-          className={inputClasses}
+          className={baseClasses}
+          disabled={disabled}
         />
       ) : (
-        <input
-          type={type}
-          id={name}
-          name={name}
+        <textarea
+          id={id}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          onBlur={onBlur}
           placeholder={placeholder}
-          className={inputClasses}
+          className={baseClasses}
+          rows={rows}
+          disabled={disabled}
         />
       )}
-      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+      {helpText && <p className="mt-2 text-sm text-gray-500">{helpText}</p>}
     </div>
   );
 };

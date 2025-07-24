@@ -1,12 +1,15 @@
 import React from "react";
-import type { TemperatureRecord } from "../../types/api";
-import { formatDate, formatTemperatureSeries } from "../../utils/formatters";
+import type { TemperatureRecord } from "../../utils/temperatureApi";
 
 interface RecordDetailsProps {
   record: TemperatureRecord;
 }
 
 const RecordDetails: React.FC<RecordDetailsProps> = ({ record }) => {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleString();
+  };
+
   return (
     <div className="p-6 w-[30%] border-r border-gray-200">
       <h2 className="mb-6 text-xl font-semibold text-gray-900">
@@ -28,7 +31,7 @@ const RecordDetails: React.FC<RecordDetailsProps> = ({ record }) => {
             Temperature Series
           </label>
           <div className="overflow-y-auto p-3 max-h-32 text-sm text-gray-900 bg-gray-50 rounded-md">
-            {formatTemperatureSeries(record.temperatureSeries)}
+            {record.temperatureSeries.join(", ")}
           </div>
         </div>
 
