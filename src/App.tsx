@@ -57,9 +57,13 @@ function App() {
     setFormLoading(true);
     setError("");
     try {
-      await temperatureApi.updateTemperatureRecord(editRecord.id, data);
+      const updatedRecord = await temperatureApi.updateTemperatureRecord(
+        editRecord.id,
+        data
+      );
       await fetchData();
-      setViewMode("dashboard");
+      setSelectedRecord(updatedRecord);
+      setViewMode("detail");
       setEditRecord(null);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Failed to update record");
