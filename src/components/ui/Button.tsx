@@ -1,4 +1,5 @@
 import React from "react";
+import Icon from "./Icon";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -7,6 +8,19 @@ interface ButtonProps {
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
   className?: string;
+  icon?:
+    | "back"
+    | "edit"
+    | "delete"
+    | "view"
+    | "plus"
+    | "chart"
+    | "user"
+    | "close"
+    | "check"
+    | "warning"
+    | "error";
+  iconPosition?: "left" | "right";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -16,6 +30,8 @@ const Button: React.FC<ButtonProps> = ({
   size = "md",
   disabled = false,
   className = "",
+  icon,
+  iconPosition = "left",
 }) => {
   const baseClasses =
     "inline-flex items-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -31,16 +47,32 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const sizeClasses = {
-    sm: "px-3 py-1.5 text-xs rounded-full",
-    md: "px-6 py-3 text-sm rounded-full",
-    lg: "px-8 py-4 text-base rounded-full",
+    sm: "px-3 py-1.5 text-xs",
+    md: "px-5 py-3 text-sm",
+    lg: "px-6 py-3 text-base",
   };
 
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const borderRadiusClasses = {
+    primary: "rounded-lg",
+    secondary: "rounded-md",
+    danger: "rounded-md",
+    view: "rounded-3xl", // Make view button more rounded
+  };
+
+  const iconSize = size === "sm" ? "sm" : "md";
+  const iconClasses = iconPosition === "left" ? "mr-2" : "ml-2";
+
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${borderRadiusClasses[variant]} ${className}`;
+
+  const iconElement = icon && (
+    <Icon name={icon} size={iconSize} className={iconClasses} />
+  );
 
   return (
     <button onClick={onClick} disabled={disabled} className={classes}>
+      {icon && iconPosition === "left" && iconElement}
       {children}
+      {icon && iconPosition === "right" && iconElement}
     </button>
   );
 };
