@@ -1,21 +1,4 @@
-# Ivanti Frontend - Temperature Tracking Dashboard
-
-A modern React TypeScript frontend application for tracking and visualising temperature records. Built with Vite, Tailwind CSS, and Recharts for a professional dashboard experience.
-
-## 📋 Prerequisites
-
-Before running this application, make sure you have the following installed:
-
-- **Node.js** (version 16 or higher)
-- **npm** (comes with Node.js)
-- **Backend API** (ivanti-backend) running on port 5000
-
-### Check your installations:
-
-```bash
-node --version
-npm --version
-```
+# Ivanti Frontend - Temperature Dashboard
 
 ## Installation
 
