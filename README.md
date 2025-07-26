@@ -1,7 +1,5 @@
 # Ivanti Frontend - Temperature Dashboard
 
-## Installation
-
 ### 1. Clone the repository
 
 ```bash
@@ -18,13 +16,11 @@ npm install
 ### 3. Start the frontend development server
 
 ```bash
-# In your frontend directory
 npm run dev
 ```
 
 ### 4. Run Jest test suite
 
 ```bash
-# In your frontend directory
 npm run test
 ```
