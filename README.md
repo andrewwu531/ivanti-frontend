@@ -15,22 +15,10 @@ cd ivanti-frontend
 npm install
 ```
 
-### 3. Start the backend server
-
-Make sure your backend is running:
-
-```bash
-# In your backend directory
-cd ../ivanti-backend
-npm run dev
-```
-
-### 4. Start the frontend development server
+### 3. Start the frontend development server
 
 ```bash
 # In your frontend directory
 cd ../ivanti-frontend
 npm run dev
 ```
-
-The application will be available at: `http://localhost:5173`
