@@ -19,6 +19,5 @@ npm install
 
 ```bash
 # In your frontend directory
-cd ../ivanti-frontend
 npm run dev
 ```
