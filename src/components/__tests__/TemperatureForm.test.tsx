@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import TemperatureForm from "../TemperatureForm";
 
@@ -24,14 +24,12 @@ describe("TemperatureForm", () => {
     const user = userEvent.setup();
     render(<TemperatureForm onSubmit={mockOnSubmit} />);
 
-    // Fill in the form
     await user.type(screen.getByLabelText(/person name/i), "John Doe");
     await user.type(
       screen.getByLabelText(/temperature series/i),
       "37.2, 36.8, 37.5"
     );
 
-    // Submit the form
     await user.click(
       screen.getByRole("button", { name: /add temperature record/i })
     );
@@ -46,10 +44,8 @@ describe("TemperatureForm", () => {
     const user = userEvent.setup();
     render(<TemperatureForm onSubmit={mockOnSubmit} />);
 
-    // Fill only temperature series
     await user.type(screen.getByLabelText(/temperature series/i), "37.2, 36.8");
 
-    // Submit the form
     await user.click(
       screen.getByRole("button", { name: /add temperature record/i })
     );
@@ -62,10 +58,8 @@ describe("TemperatureForm", () => {
     const user = userEvent.setup();
     render(<TemperatureForm onSubmit={mockOnSubmit} />);
 
-    // Fill only person name
     await user.type(screen.getByLabelText(/person name/i), "John Doe");
 
-    // Submit the form
     await user.click(
       screen.getByRole("button", { name: /add temperature record/i })
     );
@@ -80,14 +74,12 @@ describe("TemperatureForm", () => {
     const user = userEvent.setup();
     render(<TemperatureForm onSubmit={mockOnSubmit} />);
 
-    // Fill form with invalid data
     await user.type(screen.getByLabelText(/person name/i), "John Doe");
     await user.type(
       screen.getByLabelText(/temperature series/i),
       "37.2, abc, 37.5"
     );
 
-    // Submit the form
     await user.click(
       screen.getByRole("button", { name: /add temperature record/i })
     );

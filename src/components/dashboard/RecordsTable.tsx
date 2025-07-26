@@ -36,7 +36,7 @@ const RecordsTable: React.FC<RecordsTableProps> = ({ records, onView }) => {
               key={record.id}
               record={record}
               onView={onView}
-              isLast={index === records.length - 1} // Pass isLast prop
+              isLast={index === records.length - 1}
             />
           ))}
         </tbody>

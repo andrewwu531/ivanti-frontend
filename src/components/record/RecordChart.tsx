@@ -27,8 +27,6 @@ const RecordChart: React.FC<RecordChartProps> = ({
         for (const entry of entries) {
           const width = entry.contentRect.width;
 
-          // Calculate Y-axis position and plotting area width
-          // Y-axis is positioned at left margin (30px)
           const leftMargin = 30;
           const rightMargin = 10;
           const yAxisX = leftMargin;
@@ -43,7 +41,6 @@ const RecordChart: React.FC<RecordChartProps> = ({
     }
   }, []);
 
-  // Transform temperatures into Recharts data format
   const chartData = temperatures.map((temp, index) => ({
     name: `Temp ${index + 1}`,
     temperature: temp,
@@ -51,24 +48,20 @@ const RecordChart: React.FC<RecordChartProps> = ({
     index: index,
   }));
 
-  // Custom bar component with labels
   const CustomBar = (props: any) => {
     const { y, height, temperature, isClosest, index } = props;
 
     if (!temperature) return null;
 
-    const barColor = temperature > 0 ? "#ffb300" : "#3388ff"; // Darker orange and darker blue
-    const borderColor = "#000000"; // Always use black border
-    const borderWidth = 1; // Always use thin border
+    const barColor = temperature > 0 ? "#ffb300" : "#3388ff";
+    const borderColor = "#000000";
+    const borderWidth = 1;
 
-    // Calculate bar width and position
     const barWidth = plottingAreaWidth / temperatures.length;
 
-    // Position bars so that the left edge of the first bar starts at x=0
     const barX =
       yAxisPosition + (plottingAreaWidth / temperatures.length) * index;
 
-    // Consistent distance for both positive and negative labels
     const labelDistance = 8;
     let labelY;
 
@@ -83,7 +76,6 @@ const RecordChart: React.FC<RecordChartProps> = ({
 
     return (
       <g>
-        {/* Bar */}
         <rect
           x={barX}
           y={temperature > 0 ? y : y + height}
@@ -93,14 +85,13 @@ const RecordChart: React.FC<RecordChartProps> = ({
           stroke={borderColor}
           strokeWidth={borderWidth}
         />
-        {/* Temperature label */}
         <text
           x={barX + barWidth / 2}
           y={labelY}
           textAnchor="middle"
           fontSize="14"
           fontWeight="600"
-          fill={isClosest ? "#ff0000" : "#333"} // Red text for highlighted temperature
+          fill={isClosest ? "#ff0000" : "#333"}
         >
           {labelText}
         </text>
@@ -115,7 +106,6 @@ const RecordChart: React.FC<RecordChartProps> = ({
       </h2>
 
       <div ref={chartRef} className="relative px-12 bg-white">
-        {/* Hot and Cold icons positioned above and below the Y-axis */}
         <div className="-mb-3">
           <span className="text-2xl"></span>
           <span
@@ -140,7 +130,6 @@ const RecordChart: React.FC<RecordChartProps> = ({
             <YAxis tick={false} stroke="#000" strokeWidth={1.25} />
             <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
             <Bar dataKey="temperature" shape={<CustomBar />} />
-            {/* Custom "0" label at origin */}
             <text
               x={yAxisPosition - 10}
               y={200}
@@ -151,12 +140,10 @@ const RecordChart: React.FC<RecordChartProps> = ({
             >
               0
             </text>
-            {/* Red up arrow at top of Y-axis */}
             <polygon
               points={`${yAxisPosition - 8},20 ${yAxisPosition + 8},20 ${yAxisPosition},10`}
               fill="#ffb300"
             />
-            {/* Blue down arrow at bottom of Y-axis */}
             <polygon
               points={`${yAxisPosition - 8},375 ${yAxisPosition + 8},375 ${yAxisPosition},385`}
               fill="#3388ff"
@@ -173,7 +160,6 @@ const RecordChart: React.FC<RecordChartProps> = ({
         </div>
       </div>
 
-      {/* Sample temperatures text below the chart */}
       <div className="mt-6 text-center">
         <p className="text-gray-700">
           Sample temperatures. Here,{" "}

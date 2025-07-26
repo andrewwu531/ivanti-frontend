@@ -15,7 +15,6 @@ function App() {
     useState<TemperatureRecord | null>(null);
   const [editRecord, setEditRecord] = useState<TemperatureRecord | null>(null);
 
-  // Fetch all records
   const fetchData = async () => {
     setError("");
     try {
@@ -30,7 +29,6 @@ function App() {
     fetchData();
   }, []);
 
-  // Create new record
   const handleCreate = async (data: {
     personName: string;
     temperatureSeries: number[];
@@ -47,7 +45,6 @@ function App() {
     setFormLoading(false);
   };
 
-  // Edit record
   const handleEdit = async (data: {
     personName: string;
     temperatureSeries: number[];
@@ -71,7 +68,6 @@ function App() {
     setFormLoading(false);
   };
 
-  // Delete record
   const handleDelete = async (id: number) => {
     setError("");
     try {
@@ -86,26 +82,22 @@ function App() {
     }
   };
 
-  // View record detail
   const handleView = (record: TemperatureRecord) => {
     setSelectedRecord(record);
     setViewMode("detail");
   };
 
-  // Edit record (opens edit form)
   const handleEditClick = (record: TemperatureRecord) => {
     setEditRecord(record);
     setViewMode("edit");
   };
 
-  // Back to dashboard
   const handleBack = () => {
     setViewMode("dashboard");
     setSelectedRecord(null);
     setEditRecord(null);
   };
 
-  // Create new record (opens create form)
   const handleCreateClick = () => {
     setViewMode("create");
   };
@@ -126,7 +118,7 @@ function App() {
         onEditClick={handleEditClick}
         onDelete={handleDelete}
         onBack={handleBack}
-        onCreateClick={handleCreateClick} // Add this
+        onCreateClick={handleCreateClick}
       />
     </div>
   );

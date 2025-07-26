@@ -32,7 +32,6 @@ const TemperatureForm: React.FC<TemperatureFormProps> = ({
     e.preventDefault();
     setError("");
 
-    // Validation
     if (!formData.personName.trim()) {
       setError("Person name is required");
       return;
@@ -44,7 +43,6 @@ const TemperatureForm: React.FC<TemperatureFormProps> = ({
     }
 
     try {
-      // Parse the input as comma-separated numbers
       const temperatures = formData.temperatureSeries
         .split(",")
         .map((s) => s.trim())
@@ -66,7 +64,6 @@ const TemperatureForm: React.FC<TemperatureFormProps> = ({
         temperatureSeries: temperatures,
       });
 
-      // Reset form if not editing
       if (!initialData) {
         setFormData({ personName: "", temperatureSeries: "" });
       }

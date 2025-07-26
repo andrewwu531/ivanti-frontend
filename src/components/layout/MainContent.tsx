@@ -99,7 +99,7 @@ const MainContent: React.FC<MainContentProps> = ({
           <Dashboard
             records={records}
             onView={onView}
-            onCreate={onCreateClick} // Fix: Use onCreateClick instead of onBack
+            onCreate={onCreateClick}
           />
         )}
 

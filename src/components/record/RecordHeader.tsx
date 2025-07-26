@@ -4,7 +4,7 @@ import type { TemperatureRecord } from "../../utils/temperatureApi";
 interface RecordHeaderProps {
   record: TemperatureRecord;
   onEdit: (record: TemperatureRecord) => void;
-  onDelete: () => void; // Changed to no parameters since it just shows the modal
+  onDelete: () => void;
   onBack: () => void;
 }
 
@@ -57,7 +57,7 @@ const RecordHeader: React.FC<RecordHeaderProps> = ({
             Edit
           </button>
           <button
-            onClick={onDelete} // Changed to just call the function
+            onClick={onDelete}
             className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md border border-transparent transition-colors duration-200 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
           >
             <svg

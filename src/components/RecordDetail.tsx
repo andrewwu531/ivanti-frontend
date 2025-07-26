@@ -44,7 +44,6 @@ const RecordDetail: React.FC<RecordDetailProps> = ({
         />
         <div className="flex">
           <RecordDetails record={record} />
-          {/* Chart Section - 70% */}
           <div className="p-6 w-[70%]">
             <div className="h-full">
               <RecordChart

@@ -17,16 +17,13 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
 
   return (
     <div className="flex fixed inset-0 z-50 justify-center items-center">
-      {/* Background overlay with reduced opacity */}
       <div
         className="absolute inset-0 bg-gray-100 bg-opacity-30"
         onClick={onCancel}
       ></div>
 
-      {/* Popup */}
       <div className="relative px-10 py-10 mx-4 bg-white rounded-2xl shadow-lg w-100">
         <div className="text-center">
-          {/* Warning icon */}
           <div className="flex justify-center items-center mx-auto mb-4 w-12 h-12 bg-red-100 rounded-full">
             <svg
               className="w-6 h-6 text-red-600"
@@ -43,19 +40,16 @@ const DeleteConfirmationModal: React.FC<DeleteConfirmationModalProps> = ({
             </svg>
           </div>
 
-          {/* Title */}
           <h3 className="mb-4 text-lg font-medium text-gray-900">
             Delete Record
           </h3>
 
-          {/* Message */}
           <p className="mb-7 text-sm text-gray-500">
             Are you sure you want to delete the temperature record for{" "}
             <span className="font-medium text-gray-900">{personName}</span>?
             <br />
           </p>
 
-          {/* Buttons */}
           <div className="flex justify-center space-x-3">
             <button
               onClick={onCancel}

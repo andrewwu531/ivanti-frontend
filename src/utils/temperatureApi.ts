@@ -47,7 +47,6 @@ export function findClosestToZero(temperatures: number[]): number {
       closest = temp;
       minDistance = distance;
     } else if (distance === minDistance && temp > closest) {
-      // If equally close, prefer positive number
       closest = temp;
     }
   }
@@ -129,7 +128,6 @@ class TemperatureApiService {
     }
   }
 
-  // Get all temperature records
   async getTemperatureRecords(params?: {
     personName?: string;
     startDate?: string;
@@ -150,7 +148,6 @@ class TemperatureApiService {
     return response.data;
   }
 
-  // Get single temperature record
   async getTemperatureRecord(id: number): Promise<TemperatureRecord> {
     const response = await this.request<TemperatureRecord>(
       `/temperature-records/${id}`
@@ -158,7 +155,6 @@ class TemperatureApiService {
     return response.data;
   }
 
-  // Create new temperature record
   async createTemperatureRecord(
     data: CreateTemperatureRequest
   ): Promise<TemperatureRecord> {
@@ -172,7 +168,6 @@ class TemperatureApiService {
     return response.data;
   }
 
-  // Update temperature record
   async updateTemperatureRecord(
     id: number,
     data: UpdateTemperatureRequest
@@ -187,14 +182,12 @@ class TemperatureApiService {
     return response.data;
   }
 
-  // Delete temperature record
   async deleteTemperatureRecord(id: number): Promise<void> {
     await this.request(`/temperature-records/${id}`, {
       method: "DELETE",
     });
   }
 
-  // Get temperature statistics
   async getStats(): Promise<TemperatureStats> {
     const response = await this.request<TemperatureStats>(
       "/temperature-records/stats/summary"
