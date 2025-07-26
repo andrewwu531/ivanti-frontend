@@ -21,3 +21,10 @@ npm install
 # In your frontend directory
 npm run dev
 ```
+
+### 4. Run Jest test suite
+
+```bash
+# In your frontend directory
+npm run test
+```
